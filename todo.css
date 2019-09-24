@@ -1,0 +1,861 @@
+
+body{
+  margin: 0;
+  font-family: 'Segoe', 'Segoe UI', 'Arial', 'sans-serif';  
+}
+
+.container {
+  top: 0;
+  left: 0;
+}
+
+input[type="text"]::placeholder { 
+    color: #2078e5; 
+} 
+
+input[type="text"]:focus::placeholder { 
+    color: #868077; 
+} 
+
+.header {
+  background-color: #2878D7;
+  height: 48px;
+  width: 100%;
+  position: relative;
+}
+
+.gridMenu {
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  float: left;
+}
+
+.gridMenu:hover {
+  background-color: #1B5A9E;
+}
+
+.fa-th {
+  position: absolute;
+  color: white;
+  left: 15px;
+  top: 17px;
+  opacity: 0.8;
+}
+
+.toDoTextInHeader {
+  width: 48px;
+  height: 100%;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  float: left;
+}
+
+.todoText {
+  width: 48px;
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+  position: absolute;
+  top: 18px;
+  left: 6px;
+}
+
+.searchBox {
+    float: left;
+    height: 48;
+    display: inline-block;
+    position: relative;
+    left: 315px;
+        width: 432px;
+}
+
+.searchText {
+    position: absolute;
+    width: 389px;
+        left: 25px; 
+    top: 8px;
+    height: 32px;
+    background-color: #C5DDF8;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    padding-left: 6px;
+}
+/*
+.fa-search {
+      height: 35px;
+    width: 25px;
+    margin-top: 7px;
+        background-color: #C5DDF8;
+}
+*/
+.userIcon{
+  display: inline-block;
+  float: right;
+  width: 48;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+}
+
+.fa-user-circle {
+  color: white;
+  font-size: 29px;
+  position: absolute;
+  top: 12px;
+  left: 9px;
+}
+
+.userIcon:hover {
+  background-color: #1B5A9E;
+}
+
+.questionIcon {
+  display: inline-block;
+  float: right;
+  width: 48;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+}
+
+.fa-question {
+  color: white;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+.questionIcon:hover {
+  background-color: #1B5A9E;
+}
+
+.settingIcon {
+  display: inline-block;
+  float: right;
+  width: 48;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+}
+
+.fa-cog {
+  color: white;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+}
+
+.settingIcon:hover {
+  background-color: #1B5A9E;
+}
+
+.sidePanel {
+  background-color: #F4F4F4;
+  width: 23%;
+  height: 92%;
+  position: relative;
+  display: inline-block;
+  float: left;
+  font-weight: 100;
+}
+
+.sideBarHeader {
+  height: 48px;
+  margin-top: 12px;
+  position: relative;
+}
+
+.sideBarButton {
+  position: relative;
+  background-color: #F4F4F4;
+  width: 32px;
+  height: 32px;
+  left: 6px;
+  top: 10px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+} 
+
+.sideBarButton:hover {
+  background-color: #FAFAFA;
+}
+
+.fa-bars {
+  position: absolute;
+  color: #4860FB;
+  cursor: pointer;
+  right: 7px;
+  bottom: 6px;
+  font-size: 16px;
+  opacity: 0.5;
+  
+}
+
+
+.myDayIcon{
+    background-color: #F4F4F4;
+    width: 100%;
+    height: 36px;
+    position: relative;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.myDayIcon:hover {
+  background-color: #FAFAFA;
+}
+
+.fa-sun {
+  position: absolute;
+  color: #82849F;
+  font-size: 16px;
+  top: 15px;
+  left: 16px;
+  display: inline-block;
+}
+
+.sidePanalText {
+	  position: absolute;
+  top: 14px;
+  left: 53px;
+  color: #4F5257;
+  font-size: 14px;
+}
+
+.importantIcon {
+    background-color: #F4F4F4;
+    width: 100%;
+    height: 36px;
+    position: relative;
+    cursor: pointer;
+}
+
+.importantIcon:hover {
+  background-color: #FAFAFA;
+}
+
+
+.fa-star {
+  position: absolute;
+  color: #82849F;
+  font-size: 16px;
+  top: 15px;
+  left: 16px;
+  display: inline-block;
+}
+
+.plannedIcon {
+    background-color: #F4F4F4;
+    width: 100%;
+    height: 36px;
+    position: relative;
+    cursor: pointer;
+}
+
+.plannedIcon:hover {
+  background-color: #FAFAFA;
+}
+
+.fa-calendar-alt {
+  position: absolute;
+  color: #82849F;
+  font-size: 16px;
+  top: 15px;
+  left: 18px;
+  display: inline-block;
+}
+
+.assignIcon {
+    background-color: #F4F4F4;
+    width: 100%;
+    height: 36px;
+    position: relative;
+    cursor: pointer;
+}
+
+.assignIcon:hover {
+  background-color: #FAFAFA;
+}
+
+.fa-user {
+  position: absolute;
+  color: #5CA52D;
+  font-size: 16px;
+  top: 15px;
+  left: 18px;
+  display: inline-block;
+}
+
+.taskIcon {
+    background-color: #F4F4F4;
+    width: 100%;
+    height: 36px;
+    position: relative;
+    cursor: pointer;
+}
+
+.taskIcon:hover {
+  background-color: #FAFAFA;
+}
+
+.fa-home {
+  position: absolute;
+  color: #2078e5;
+  font-size: 16px;
+  top: 15px;
+  left: 18px;
+  display: inline-block;
+}
+
+.listGroupBar {
+  height: 48;
+  margin-top: 10px;
+      position: relative;
+}
+
+.newListIcon {
+    width: 85%;
+    height: 36;
+    position: absolute;
+    background-color: #F4F4F4;
+}
+
+.newListIcon:hover {
+  background-color: #FAFAFA;
+}
+
+.plusIcon {
+  float: left;
+  display: inline-block;
+  position: relative;
+  top: 6px;
+  height: 24px;
+  width: 24px;
+  left: 12px;
+  border: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.plusIcon i {
+  position: absolute;
+    font-size: 18;
+    color: #2078e5;
+    top: 1px;
+    right: 1px;
+}
+
+.newListInput{
+    display: inline-block;
+    float: left;
+    position: relative;
+    left: 29px;
+    top: 5px;
+    background-color: transparent;
+}
+
+.newListText {
+    height: 24px;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+
+.listCreated {
+    background-color: #F4F4F4;
+    width: 100%;
+    height: 36px;
+    position: relative;
+    cursor: pointer;
+}
+
+.listCreated:hover {
+  background-color: #FAFAFA;
+}
+
+.fa-list {
+  position: absolute;
+  color: #2078e5;
+  font-size: 16px;
+  top: 15px;
+  left: 18px;
+  display: inline-block;
+}
+
+.listName {
+  position: absolute;
+  top: 15px;
+  left: 50px;
+  color: #2078e5;
+  font-size: 14px;
+}
+
+.taskDiv{
+    width: 77%;
+    height: 92%;
+    background-color: white;
+    display: inline-block;
+    float: left;
+    position: relative;
+}
+
+.taskHeader {
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    position: relative;
+}
+
+.taskTitle{
+    position: relative;
+    background-color: white;
+    width: 100%;
+    height: 48px;
+    left: 0px;
+    top: 12px;
+}
+
+.title {
+	  background-color: white;
+    width: 63%;
+    height: 40px;
+    top: 4px;
+    display: inline-block;
+    float: left;  
+}
+
+.share {
+    background-color: white;
+    width: 94px;
+    height: 40px;
+    display: inline-block;
+    float: right;	
+    top: 4px;
+    left: 43px;
+    cursor: pointer;
+}
+
+.share:hover {
+  background-color: #EDEDED;
+}
+
+.fa-user-plus{
+    top: 11px;
+    left: 15px;
+    color: 3D69E4;
+    font-size: 14px;
+    margin-left: 11px;
+    margin-top: 10px;
+}
+
+.shareText {
+    color: 3D69E4;
+    top: 10px;
+    left: 36px;
+    font-size: 14px;
+}
+
+.sort {
+	  background-color: white;
+    width: 94px;
+    height: 40px;
+    display: inline-block;
+    float: right;  
+    top: 4px;
+    left: 51px;
+    cursor: pointer;
+    color: 3D69E4;
+}
+
+.sort:hover {
+	background-color: #EDEDED;
+}
+
+.fa-sort{
+    top: 6px;
+    left: 19px;
+    color: 3D69E4;
+    font-size: 20px;
+    margin-left: 19px;
+    margin-top: 6px;
+}
+}
+
+.sortText {
+    color: 3D69E4;
+    top: 9px;
+    left: 36px;
+    font-size: 14px;	
+}
+
+.titleName {
+   position: absolute;
+   display: inline-block;
+   float: left;
+   width: 138px;
+   height: 37px;
+   top: 9px;
+   left: 21px;
+   color: #3e69e4;
+   font-weight: 600;
+   font-size: 20px;
+}
+
+.deleteList {
+  display: inline-block;
+  float: right;
+  left: 200px;
+  top: 9px;
+  outline: none;
+  border: none;
+  background: transparent;
+  height: 22px;
+  width: 33px;
+  cursor: pointer;
+  margin-right: 4px;
+    margin-top: 5px;
+}
+
+.deleteList:hover {
+  background-color: #EDEDED;
+}
+
+.deleteList i {
+  color: #3e69e4;
+}
+
+.addTask {
+    width: 93%;
+    height: 51px;
+    background-color: white;
+    position: relative;
+    margin-left: 21px;
+        border-bottom-width: thin;
+    border-bottom-style: ridge;
+}
+
+.plusTaskIcon {
+    display: inline-block;
+    float: left;
+    position: relative;
+    height: 50px;
+    width: 28px;
+    top: 2px;
+    left: -4px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.plusTaskIcon i {
+	  position: absolute;
+    font-size: 18;
+    color: #2078e5;
+    top: 14px;
+    right: 5px;
+}
+
+.newTaskText {
+	  position: absolute;
+    height: 50px;
+    width: 100%;
+    left: 21px;
+    padding-left: 15px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+}
+
+.addedTask {
+    width: 93%;
+    height: 51px;
+    background-color: white;
+    position: relative;
+    margin-left: 21px;
+    border-bottom-width: thin;
+    border-bottom-style: ridge;
+}
+
+.plusAddedTaskIcon {
+    display: inline-block;
+    float: left;
+    position: relative;
+    height: 50px;
+    width: 28px;
+    top: 4px;
+    left: -6px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.plusAddedTaskIcon i {
+    position: absolute;
+    font-size: 18;
+    color: #2078e5;
+    top: 14px;
+    right: 5px;
+}
+
+.taskName {
+	  position: relative;
+    top: 18px;
+    left: 7px;
+    font-size: 14px;
+}
+
+.taskBar {
+	overflow: auto;
+	height: 91%;
+}
+
+.stepsBar{
+  position: relative;
+  background-color: #F5F5F5;
+  display: inline-block;
+  float: left;
+  width: 0%;
+  height: 92%;
+  overflow: auto;
+}
+
+.sectionInStep {
+    position: relative;
+    width: 324px;
+    height: 51px;
+    background-color: white;
+    margin-top: 12px;
+    left: 14px;
+}
+
+.addSteps {
+    position: relative;
+    width: 324px;
+    height: 41px;
+    background-color: white;
+    left: 14px;
+}
+
+.sectionFeature {
+    position: relative;
+    width: 324px;
+    height: 51px;
+    background-color: white;
+    left: 14px;
+}
+
+.addNote {
+	  margin-top: 12px;
+    position: relative;
+    left: 14px;
+    height: 54px;
+    width: 292px;
+    padding: 16px;
+    background-color: white;
+}
+
+.addNote input[type="text"]::placeholder { 
+    color: #B4B4B5; 
+} 
+
+.addNoteText {
+	  width: 292px;
+    border: none;
+    outline: none;
+
+}
+
+.stepsIcon {
+    display: inline-block;
+    float: left;
+    position: relative;
+    height: 50px;
+    width: 28px;
+    top: 2px;
+    left: 10px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.stepsIcon i {
+    position: absolute;
+    font-size: 18;
+    color: #2078e5;
+    top: 14px;
+    right: 5px;
+}
+
+.stepText {
+    position: absolute;
+    height: 31px;
+    width: 79%;
+    left: 40px;
+    top: 10px;
+    padding-left: 0px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.stepText:focus {
+	border: 0.5px solid black;
+}
+
+.stepText:hover {
+	background-color: #F5F5F5;
+}
+
+.stepsIcon input[type="text"]::placeholder { 
+    color: black; 
+} 
+
+.plusStepIcon {
+display: inline-block;
+    float: left;
+    position: relative;
+    height: 36px;
+    width: 28px;
+    top: 0px;
+    left: 7px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.plusStepIcon i {
+position: absolute;
+    font-size: 13px;
+    color: #2078e5;
+    top: 14px;
+    right: 5px;
+}
+
+.newStepText {
+    position: absolute;
+    height: 40px;
+    width: 79%;
+    left: 40px;
+    padding-left: 0px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    font-size: 12px;
+}
+
+.stepsIcon input[type="text"]::placeholder { 
+    color: black; 
+} 
+
+.addedStep {
+    width: 324px;
+    height: 51px;
+    background-color: white;
+    position: relative;
+    margin-left: 14px;
+    border-bottom-width: thin;
+    border-bottom-style: ridge;
+}
+
+.plusAddedStepIcon {
+    display: inline-block;
+    float: left;
+    position: relative;
+    height: 50px;
+    width: 28px;
+    top: 4px;
+    left: 8px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.plusAddedStepIcon i {
+    position: absolute;
+    font-size: 13;
+    color: #2078e5;
+    top: 17px;
+    right: 7px;
+}
+
+.stepName {
+    position: relative;
+    top: 18px;
+    left: 12px;
+    font-size: 14px;
+}
+
+.stepsBarFooter {
+    background-color: transparent;
+    width: 93%;
+    height: 39px;
+    margin-left: 13px;
+    margin-top: 82px;
+    border-top-width: thin;
+    border-top-style: ridge;
+}
+
+.backIcon {
+    height: 23px;
+    width: 33px;
+    outline: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+    margin-top: 11px;
+}
+
+.fa-arrow-right {
+    color: #82849F;
+    font-size: 13px;
+}
+
+.backIcon:hover {
+	background-color: white;
+}
+
+.createdDay {
+  color: #82849F;
+  display: inline-block;
+  float: left;
+  font-size: 12px;
+  margin-top: 16px;
+  margin-left: 95px;
+}
+
+.trashIcon {
+  display: inline-block;
+  float: right;
+    width: 33px;
+    height: 23;
+    outline: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.trashIcon:hover {
+	background-color: white;
+}
+
+.fa-trash{
+  color: #82849F;
+}

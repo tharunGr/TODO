@@ -1,0 +1,163 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="todo.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    </head>
+    <body>
+        <div class="container">
+			<div class="header">
+				<div class="gridMenu">
+					<i class="fa fa-th" aria-hidden="true"></i>
+				</div>
+				<div class="toDoTextInHeader">
+					<span class="todoText">To Do</span>              
+				</div>
+				<div class="searchBox">
+					<!--<i class="fa fa-search" aria-hidden="true"></i>-->
+					<input type="text" placeholder="Search" class="searchText">
+				</div>
+				<div class="userIcon">
+					<i class="fas fa-user-circle"></i>
+				</div>
+				<div class="questionIcon">
+					<i class="fas fa-question"></i>
+				</div>
+				<div class="settingIcon">
+					<i class="fas fa-cog"></i>
+				</div>
+			</div>
+			<div class="sidePanel">
+				<div class="sideBarHeader">
+					<button class="sideBarButton" value="open">
+						<i class="fa fa-bars" aria-hidden="true"></i>
+					</button>
+				</div>
+				<div class="myDayIcon">
+					<div>
+						<i class="fas fa-sun" aria-hidden="true"></i>
+					</div>
+					<div class="sidePanalText">
+						<span>My Day</span>
+					</div>
+				</div>
+				<div class="importantIcon">
+					<div>
+						<i class="fas fa-star"></i>
+					</div>
+					<div class="sidePanalText">
+						<span>Important</span>
+					</div>
+				</div>
+				<div class="plannedIcon">
+					<div>
+						<i class="fas fa-calendar-alt"></i>
+					</div>
+					<div class="sidePanalText">
+						<span>Planned</span>
+					</div>
+				</div>
+				<div class="assignIcon">
+					<div>
+						<i class="far fa-user"></i>
+					</div>
+					<div class="sidePanalText">
+						<span>Assigned to Me</span>
+					</div>
+				</div>
+				<div class="taskIcon">
+					<div>
+						<i class="fas fa-home"></i>
+					</div>
+					<div class="sidePanalText">
+						<span>Tasks</span>
+					</div>
+				</div>
+				<div class="newCreateList">
+				</div>
+				<div class="listGroupBar">
+							<div class="newListIcon">
+								<button class="plusIcon">
+								<label for="newListTextLabel"><i class="fas fa-plus"></i></label>
+								</button>
+								<div class="newListInput">
+										<input id="newListTextLabel" class="newListText" type="text" placeholder="New list"/>
+								</div>
+							</div>
+				</div>
+			</div>
+			<div class="taskDiv">
+				<div class="taskHeader">
+					<div class="taskTitle">
+						<div class="title">
+							<span class="titleName">Tasks</span>
+						</div>
+						<div class="share">
+							<i class="fas fa-user-plus"></i>
+							<span class="shareText">Share</span>
+						</div>
+						<div class="sort">
+							<i class="fas fa-sort"></i>
+							<span class="sortText">Sort</span>
+						</div>
+						<button class="deleteList">
+							<i class="fa fa-trash"></i>
+						</button>
+					</div>
+				</div>
+				<div class="taskBar">
+					<div class="task">
+					</div>
+					<div class="addTask">
+						<button class="plusTaskIcon">
+							<label class="newTaskTextLabelClass" for="newTaskTextLabel"><i id="plus" class="fas fa-plus"></i></label>
+						</button>
+						<input id="newTaskTextLabel" class="newTaskText" type="text" placeholder="Add task"/>
+					</div>
+				</div>  
+			</div>
+			<div class="stepsBar">
+				<div class="sectionInStep">
+						<button class="stepsIcon">
+						<label class="stepTextLabelClass" for="stepTextLabel"><i class="far fa-circle"></i></label>
+						</button>
+						<input id="stepTextLabel" class="stepText" type="text" placeholder="Task"/>
+				</div>
+				<div class="steps">
+					<div class="newSteps">
+					</div>
+					<div class="addSteps">
+						<button class="plusStepIcon">
+						<label class="newStepTextLabelClass" for="newStepTextLabel"><i id="plusStep" class="fas fa-plus"></i></label>
+						</button>
+						<input id="newStepTextLabelClass" class="newStepText" type="text" placeholder="Add step"/>
+					</div>
+				</div>
+				<div class="sectionInStep">
+				</div>
+				<div class="sectionInStep">
+				</div>
+				<div class="sectionFeature">
+				</div>
+				<div class="sectionFeature">
+				</div>
+				<div class="sectionInStep">
+				</div>
+				<div class="addNote">
+					<input class="addNoteText" type="text" placeholder="Add note"/>
+				</div>
+				<div class="stepsBarFooter">
+					<button class="backIcon" value="close">
+						<i class="fa fa-arrow-right"></i>
+					</button>
+					<div class="createdDay">
+						<span>Created Today</span>
+					</div>
+					<button class="trashIcon">
+							<i class="fa fa-trash"></i>
+					</button>
+				</div>
+			</div>
+        </div>
+    <script src="todo.js"></script>
+    </body>
+</html>
