@@ -397,6 +397,15 @@ input[type="text"]:focus::placeholder {
   font-size: 14px;
 }
 
+.spanCount {
+  position: absolute;
+  left: 265px;
+  top: 16px;
+  font-size: 13px;
+  color: #2078e5;
+  font-weight: 900;
+}
+
 .taskDiv{
     width: 77%;
     height: 92%;
@@ -506,6 +515,13 @@ input[type="text"]:focus::placeholder {
    color: #3e69e4;
    font-weight: 600;
    font-size: 20px;
+   outline: none;
+   border: none;
+}
+
+.titleName:focus {
+  border: 1px solid;
+  color: #ACACAC;
 }
 
 .deleteList {
@@ -575,6 +591,7 @@ input[type="text"]:focus::placeholder {
     font-size: 14px;
 }
 
+
 .addedTask {
     width: 93%;
     height: 51px;
@@ -583,6 +600,54 @@ input[type="text"]:focus::placeholder {
     margin-left: 21px;
     border-bottom-width: thin;
     border-bottom-style: ridge;
+}
+
+.round {
+  position: relative;
+  width: 31px;
+  height: 31px;
+  display: inline-block;
+  float: left;
+  top: 9px;
+  left: -4px;
+}
+
+.round label {
+  background-color: #fff;
+  border: 2px solid #2078e5;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 16px;
+  left: 4px;
+  position: absolute;
+  top: 6px;
+  width: 15px;
+}
+
+.round label:after {
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 3px;
+  left: 3px;
+  opacity: 0;
+  position: absolute;
+  top: 5px;
+  transform: rotate(-45deg);
+  width: 8px;
+}
+
+.round input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.round input[type="checkbox"]:checked + label {
+  background-color: #2078e5;
+}
+
+.round input[type="checkbox"]:checked + label:after {
+  opacity: 1;
 }
 
 .plusAddedTaskIcon {
@@ -598,7 +663,7 @@ input[type="text"]:focus::placeholder {
     background-color: transparent;
     cursor: pointer;
 }
-
+/*
 .plusAddedTaskIcon i {
     position: absolute;
     font-size: 18;
@@ -606,12 +671,16 @@ input[type="text"]:focus::placeholder {
     top: 14px;
     right: 5px;
 }
-
+*/
 .taskName {
 	  position: relative;
     top: 18px;
     left: 7px;
     font-size: 14px;
+}
+
+.strike {
+  text-decoration: line-through;
 }
 
 .taskBar {
@@ -627,6 +696,63 @@ input[type="text"]:focus::placeholder {
   width: 0%;
   height: 92%;
   overflow: auto;
+}
+
+.sectionHeader {
+  position: relative;
+  width: 324px;
+  height: 51px;
+  background-color: white;
+  margin-top: 12px;
+  left: 14px;
+}
+
+.roundIconInStepHeader {
+  position: relative;
+  width: 31px;
+  height: 31px;
+  display: inline-block;
+  float: left;
+  top: 9px;
+  left: 5px;
+}
+
+.roundIconInStepHeader label {
+  background-color: #fff;
+  border: 2px solid #2078e5;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 16px;
+  left: 4px;
+  position: absolute;
+  top: 8px;
+  width: 15px;
+}
+
+.roundIconInStepHeader label:after {
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 3px;
+  left: 3px;
+  opacity: 0;
+  position: absolute;
+  top: 5px;
+  transform: rotate(-45deg);
+  width: 8px;
+}
+
+.roundIconInStepHeader input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.roundIconInStepHeader input[type="checkbox"]:checked + label {
+  background-color: #2078e5;
+}
+
+.roundIconInStepHeader input[type="checkbox"]:checked + label:after {
+  opacity: 1;
 }
 
 .sectionInStep {
@@ -697,18 +823,26 @@ input[type="text"]:focus::placeholder {
     right: 5px;
 }
 
-.stepText {
+.taskInStepHeader {
     position: absolute;
     height: 31px;
-    width: 79%;
+    width: 232px;
     left: 40px;
-    top: 10px;
+    top: 1px;
     padding-left: 0px;
     outline: none;
     border: none;
     background-color: transparent;
     font-size: 14px;
     font-weight: 800;
+}
+
+.taskInStepHeader:focus {
+  border: 1px solid;
+}
+
+.taskInStepHeaderStriked {
+  text-decoration: line-through;
 }
 
 .stepText:focus {
@@ -771,6 +905,55 @@ position: absolute;
     border-bottom-style: ridge;
 }
 
+
+.roundStepBarIcon {
+  position: relative;
+  width: 31px;
+  height: 31px;
+  display: inline-block;
+  float: left;
+  top: 9px;
+  left: 5px;
+}
+
+.roundStepBarIcon label {
+  background-color: #fff;
+  border: 2px solid #2078e5;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 10px;
+  left: 8px;
+  position: absolute;
+  top: 8px;
+  width: 10px;
+}
+
+.roundStepBarIcon label:after {
+  border: 2px solid #fff;
+  border-top: none;
+  border-right: none;
+  content: "";
+  height: 3px;
+  left: 1px;
+  opacity: 0;
+  position: absolute;
+  top: 2px;
+  transform: rotate(-45deg);
+  width: 6px;
+}
+
+.roundStepBarIcon input[type="checkbox"] {
+  visibility: hidden;
+}
+
+.roundStepBarIcon input[type="checkbox"]:checked + label {
+  background-color: #2078e5;
+}
+
+.roundStepBarIcon input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
 .plusAddedStepIcon {
     display: inline-block;
     float: left;
@@ -785,19 +968,24 @@ position: absolute;
     cursor: pointer;
 }
 
-.plusAddedStepIcon i {
-    position: absolute;
-    font-size: 13;
-    color: #2078e5;
-    top: 17px;
-    right: 7px;
-}
-
-.stepName {
+.stepTextBar {
     position: relative;
-    top: 18px;
+    top: 15px;
     left: 12px;
     font-size: 14px;
+}
+
+.stepTextBarStrike {
+    text-decoration: line-through;
+}
+
+.fa-times {
+    position: absolute;
+    left: 290px;
+    top: 14px;
+    color: 82849F;
+    font-size: 11px;
+    cursor: pointer;
 }
 
 .stepsBarFooter {

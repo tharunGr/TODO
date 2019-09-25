@@ -75,21 +75,21 @@
 				<div class="newCreateList">
 				</div>
 				<div class="listGroupBar">
-							<div class="newListIcon">
-								<button class="plusIcon">
-								<label for="newListTextLabel"><i class="fas fa-plus"></i></label>
-								</button>
-								<div class="newListInput">
-										<input id="newListTextLabel" class="newListText" type="text" placeholder="New list"/>
-								</div>
-							</div>
+					<div class="newListIcon">
+						<button class="plusIcon">
+						<label for="newListTextLabel"><i class="fas fa-plus"></i></label>
+						</button>
+						<div class="newListInput">
+								<input id="newListTextLabel" class="newListText" type="text" placeholder="New list"/>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="taskDiv">
 				<div class="taskHeader">
 					<div class="taskTitle">
 						<div class="title">
-							<span class="titleName">Tasks</span>
+							<input value="Task" class="titleName"/>
 						</div>
 						<div class="share">
 							<i class="fas fa-user-plus"></i>
@@ -116,11 +116,12 @@
 				</div>  
 			</div>
 			<div class="stepsBar">
-				<div class="sectionInStep">
-						<button class="stepsIcon">
-						<label class="stepTextLabelClass" for="stepTextLabel"><i class="far fa-circle"></i></label>
-						</button>
-						<input id="stepTextLabel" class="stepText" type="text" placeholder="Task"/>
+			    <div class="sectionHeader">
+					<div class="roundIconInStepHeader">
+						<input type="checkbox" id="checkboxInStepHeader" />
+						<label for="checkboxInStepHeader"></label>
+						<input type="text" class="taskInStepHeader">
+					</div>
 				</div>
 				<div class="steps">
 					<div class="newSteps">
