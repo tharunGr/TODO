@@ -6,12 +6,12 @@ var totalList = [];
 var taskList = {id: "", name: "", task: [], status: ""};
 var task = {id: "", name: "", status: "", isFinished: "", step: []};
 var step = {id: "", name: "", status: "", isFinished: ""};
-var taskEntries = 0;
 
+/** 
+ * SideBar functions while clicking the side bar menu button.
+ */
 document.querySelector(".sideBarButton").addEventListener("click",function() {
-	//console.log(document.querySelector(".sideBarButton").value);
 	if (document.querySelector(".sideBarButton").value == "open") {
-		//console.log("in open");
 		document.querySelector(".sidePanel").style.width = "4%";
 		document.querySelector(".sidePanalText").style.display = "none";
 		document.querySelector(".newListInput").style.display = "none";
@@ -23,7 +23,6 @@ document.querySelector(".sideBarButton").addEventListener("click",function() {
 		document.querySelector(".taskDiv").style.width = "96%";
 		document.querySelector(".sideBarButton").value = "close";
 	} else {
-		//console.log("in close");
 		document.querySelector(".sidePanel").style.width = "23%";
 		document.querySelector(".sidePanalText").style.display = "block";
 		document.querySelector(".newListInput").style.display = "block";
@@ -37,9 +36,12 @@ document.querySelector(".sideBarButton").addEventListener("click",function() {
 	}
 });
 
+/** 
+ * Plus Icon in side bar for list creation and opens the side bar while
+ * clicking the plus when its in closed state.
+ */
 document.querySelector(".plusIcon").addEventListener("click", function(e) {
 	if (document.querySelector(".sideBarButton").value == "close") {
-		console.log("in close");
 		document.querySelector(".sidePanel").style.width = "23%";
 		document.querySelector(".sidePanalText").style.display = "block";
 		document.querySelector(".newListInput").style.display = "block";
@@ -52,18 +54,10 @@ document.querySelector(".plusIcon").addEventListener("click", function(e) {
 	}
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * Creates new list when enters the list name in text box 
+ * and press enter to save.
+ */
 var textBox = document.querySelector(".newListText");
 textBox.addEventListener('keyup',function(e) {
 	var listContent;
@@ -75,6 +69,12 @@ textBox.addEventListener('keyup',function(e) {
 	}
 });
 
+/**
+ * Saves the list details in list and pushes that list in total list.
+ * 
+ * @param listContent - It contains the list name to save a list in 
+ *                      total list. 
+ */
 function saveListInTotalList(listContent) {
 	let taskList = {};
     taskList.id = getDate();
@@ -84,6 +84,9 @@ function saveListInTotalList(listContent) {
     totalList.push(taskList);
 }
 
+/**
+ * Refresh the previous list created in list creation by removing it.
+ */
 function refreshList() {
 	var refreshListBarIcon = document.querySelectorAll(".listCreated");
     refreshListBarIcon.forEach(function(list) {
@@ -91,6 +94,12 @@ function refreshList() {
 	})
 }
 
+/**
+ * Creates the new list with required elements.
+ * 
+ * @param  listContent - Current list name to  display at task header. 
+ * @param  boolean     - Based on requirement refreshing the task. 
+ */
 function createNewList(listContent, boolean) {
 	refreshList();
 	totalList.forEach(function(list) {
@@ -128,6 +137,9 @@ function createNewList(listContent, boolean) {
 	}
 }
 
+/**
+ * Deleting the current list by switching its status to inactive state.
+ */
 document.querySelector(".deleteList").addEventListener("click",function() {
 	const list = totalList.find(list => list.id == currentListId);
 	let statusDelete = "inActive"
@@ -135,6 +147,9 @@ document.querySelector(".deleteList").addEventListener("click",function() {
 	createNewList("Task", "true");
 });
 
+/**
+ * Displaying the list's name and its task that it holds in task bar.
+ */
 document.querySelector(".newCreateList").addEventListener("click",function(e) {
 	refreshTasks();
 	currentListId = e.target.id;
@@ -146,16 +161,25 @@ document.querySelector(".newCreateList").addEventListener("click",function(e) {
 	});
 });
 
+/**
+ * Changes the style of the input box in list creaation while on focus.
+ */
 document.querySelector(".newListText").addEventListener("focus", function(e) {
 	document.querySelector(".fa-plus").style.color = "#868077"; 
 	document.querySelector(".fa-plus").style.opacity = "0.7"; 
 });
 
+/**
+ * Changes the style of the input box in list creaation while on focusout.
+ */
 document.querySelector(".newListText").addEventListener("focusout", function(e) {
 	document.querySelector(".fa-plus").style.color = "#2078e5"; 
 	document.querySelector(".fa-plus").style.opacity = "1"; 
 });
 
+/**
+ * Edits the list name in task header.
+ */
 var listNameEdit = document.querySelector(".titleName");
 listNameEdit.addEventListener("keyup", function(e) {
 	if ((listNameEdit.value.length != 0) && (e.keyCode === 13)) {
@@ -166,22 +190,9 @@ listNameEdit.addEventListener("keyup", function(e) {
 	}
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * Displays the task details in steps menu.
+ */
 document.querySelector(".task").addEventListener("click",function(e) {
 	currentTaskId = e.target.id;
 	const lists = totalList.find(list => list.id == currentListId);
@@ -190,12 +201,10 @@ document.querySelector(".task").addEventListener("click",function(e) {
 	checkBoxInStepHeader = document.querySelector("#checkboxInStepHeader");
 	taskInStepHeader = document.querySelector(".taskInStepHeader");
 	if (task.isFinished == "true") {
-		console.log("trueeeee" + task.name);
 		checkBoxInStepHeader.checked = true;
 		taskInStepHeader.setAttribute("value", task.name)
 		taskInStepHeader.setAttribute("class", "taskInStepHeader taskInStepHeaderStriked")
 	} else {
-		console.log("fasleeee" + task.name);
 		checkBoxInStepHeader.checked = false;
 		taskInStepHeader.setAttribute("value", task.name)
 		taskInStepHeader.setAttribute("class", "taskInStepHeader")
@@ -207,6 +216,9 @@ document.querySelector(".task").addEventListener("click",function(e) {
 	}
 });
 
+/**
+ * Creates new task by entering new task name in task bar and press enter.
+ */
 document.querySelector(".addTask").addEventListener("click",function() {
 	var child = document.querySelector("#plus");
 	var parent = document.querySelector(".newTaskTextLabelClass");
@@ -230,6 +242,11 @@ document.querySelector(".addTask").addEventListener("click",function() {
 	});
 });
 
+/**
+ * Display the overall task in a list in task bar.
+ * 
+ * @param list - List to be shown in task bar as created lists. 
+ */
 function addTask(list) {
 	list.task.forEach(function(task) {
 		if (task.status == "active") {
@@ -261,6 +278,11 @@ function addTask(list) {
 	});
 }
 
+/**
+ * New task to be saved in the current list.
+ * 
+ * @param newTask - New task to be saved in a list. 
+ */
 function saveTaskInList(newTask) {
 	totalList.forEach(function(list) {
 		if (list.id == currentListId) {
@@ -280,6 +302,9 @@ function saveTaskInList(newTask) {
 	});
 }
 
+/**
+ * Refreshes the previous tasks with its new task details.
+ */
 function refreshTasks() {
     var refreshTaskBar = document.querySelectorAll(".addedTask");
     refreshTaskBar.forEach(function(task) {
@@ -287,10 +312,20 @@ function refreshTasks() {
     });
 }
 
+/**
+ * Display the current list tasks.
+ * 
+ * @param lists - Displays the lists.
+ */
 function displayListTasks(lists) {
 	addTask(lists);
 }
 
+/**
+ * Event listener for check box in task bar.
+ * 
+ * @param element - Checkbox to be listened for state change. 
+ */
 function listenerForCheckBoxInAddTask(element) {
 	element.addEventListener("change", function(event) {
 		var id = event.target.id;
@@ -321,6 +356,9 @@ function listenerForCheckBoxInAddTask(element) {
 	});
 }
 
+/**
+ * Editing the task name in step bar Header.
+ */
 var taskNameEdit = document.querySelector(".taskInStepHeader");
 taskNameEdit.addEventListener("keyup", function(e) {
 	if ((taskNameEdit.value.length != 0) && (e.keyCode === 13)) {
@@ -336,23 +374,9 @@ taskNameEdit.addEventListener("keyup", function(e) {
 	}
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * Adding the steps in current task by typing the step name and presses enter to save.
+ */
 document.querySelector(".addSteps").addEventListener("click",function() {
 	var child = document.querySelector("#plusStep");
 	var parent = document.querySelector(".newStepTextLabelClass");
@@ -376,6 +400,11 @@ document.querySelector(".addSteps").addEventListener("click",function() {
 	});
 });
 
+/**
+ * Adds the steps of current task in created steps bar.
+ * 
+ * @param step - Steps to be displayed as created steps. 
+ */
 function addStep(step) {
 	step.forEach(function(newStep) {
 		if (newStep.status == "active") {
@@ -413,7 +442,11 @@ function addStep(step) {
 	});
 }
 
-
+/**
+ * Saves the step in current task.
+ * 
+ * @param newStep - Steps to be saved as new step in current task. 
+ */
 function saveStepInTask(newStep) {
 	totalList.forEach(function(list) {
 		if (list.id == currentListId) {
@@ -436,10 +469,18 @@ function saveStepInTask(newStep) {
 	});
 }
 
+/**
+ * Displays the current task steps.
+ * 
+ * @param step - Steps to be displayed in steps bar. 
+ */
 function displaySteps(step) {
 	addStep(step);
 }
 
+/**
+ * Refreshes the steps in steps bar.
+ */
 function refreshSteps() {
 	var refreshStepBar = document.querySelectorAll(".addedStep");
     refreshStepBar.forEach(function(step) {
@@ -447,6 +488,9 @@ function refreshSteps() {
     });
 }
 
+/**
+ * Showing the steps bar.
+ */
 function showStepsBar() {
 	var sideBarButton = document.querySelector(".sideBarButton");
 	var taskBar = document.querySelector(".taskDiv");
@@ -461,6 +505,11 @@ function showStepsBar() {
 	}	
 }
 
+/**
+ * Event Listener for the check box in steps.
+ * 
+ * @param element - Listens the check box of the step to changes its state.
+ */
 function listenerForCheckBoxInAddStep(element) {
 	element.addEventListener("change", function(event) {
 		var id = event.target.id;
@@ -485,9 +534,14 @@ function listenerForCheckBoxInAddStep(element) {
 	});
 }
 
+/**
+ * Event listener for the close icon in the step to delete a particular 
+ * step from its task.
+ * 
+ * @param element - Close icon in steps to delete the step. 
+ */
 function listenerForCloseIconInAddStep(element) {
 	element.addEventListener("click", function(event) {
-		console.log("in close");
 		var id = event.target.id;
 		var stepId = id.replace("close","");
 		currentStepId = stepId;
@@ -506,6 +560,9 @@ function listenerForCloseIconInAddStep(element) {
 	});
 }
 
+/**
+ * Check box in the step header for task to be finished task or as unfinished task.
+ */
 document.querySelector("#checkboxInStepHeader").addEventListener("change", function() {
 	const list = totalList.find(list => list.id == currentListId);
 	list.task.forEach(function(task) {
@@ -526,25 +583,9 @@ document.querySelector("#checkboxInStepHeader").addEventListener("change", funct
 	});
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+ * Back Icon in the step bar footer to close the step bar.
+ */
 var backButton = document.querySelector(".backIcon");
 backButton.addEventListener("click",function(e) {
 	var sideBarButton = document.querySelector(".sideBarButton");
@@ -563,8 +604,10 @@ backButton.addEventListener("click",function(e) {
 	}
 });
 
+/**
+ * Trash icon in the step bar to delete the current task. 
+ */
 document.querySelector(".trashIcon").addEventListener("click",function() {
-	console.log("trash icon");
 	const list = totalList.find(list => list.id == currentListId);
 	const task = list.task.find(task => task.id == currentTaskId);
 	let statusDelete = "inActive"
@@ -574,6 +617,11 @@ document.querySelector(".trashIcon").addEventListener("click",function() {
 	displayListTasks(list);
 });
 
+/**
+ * Date operation to get milli second for id.
+ * 
+ * @returns - It returns the millic second for id.
+ */
 function getDate() {
 	date = new Date();
 	millisec = date.getTime();
