@@ -164,6 +164,16 @@ input[type="text"]:focus::placeholder {
   font-weight: 100;
 }
 
+.sidePanelClose {
+  background-color: #F4F4F4;
+  width: 4%;
+  height: 92%;
+  position: relative;
+  display: inline-block;
+  float: left;
+  font-weight: 100;
+}
+
 .sideBarHeader {
   height: 48px;
   margin-top: 12px;
@@ -361,6 +371,10 @@ input[type="text"]:focus::placeholder {
     background-color: transparent;
 }
 
+.newListInputClose {
+  display: none;
+}
+
 .newListText {
     height: 24px;
     border: none;
@@ -413,6 +427,18 @@ input[type="text"]:focus::placeholder {
     display: inline-block;
     float: left;
     position: relative;
+}
+
+.taskDivClose {
+  width: 50%;
+}
+
+.taskDivPartialFull {
+  width: 69%;
+}
+
+.taskDivFull {
+  width: 96%;
 }
 
 .taskHeader {
@@ -508,7 +534,7 @@ input[type="text"]:focus::placeholder {
    position: absolute;
    display: inline-block;
    float: left;
-   width: 138px;
+   width: 294px;
    height: 37px;
    top: 9px;
    left: 21px;
@@ -698,6 +724,10 @@ input[type="text"]:focus::placeholder {
   overflow: auto;
 }
 
+.stepsBarOpen{
+  width: 27%;
+}
+
 .sectionHeader {
   position: relative;
   width: 324px;
@@ -823,13 +853,14 @@ input[type="text"]:focus::placeholder {
     right: 5px;
 }
 
+
 .taskInStepHeader {
     position: absolute;
     height: 31px;
     width: 232px;
     left: 40px;
     top: 1px;
-    padding-left: 0px;
+    padding-top: 6px;
     outline: none;
     border: none;
     background-color: transparent;
@@ -973,6 +1004,10 @@ position: absolute;
     top: 15px;
     left: 12px;
     font-size: 14px;
+}
+
+.stepTextBar:focus {
+  border: 1px solid;
 }
 
 .stepTextBarStrike {

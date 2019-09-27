@@ -13,23 +13,25 @@ init();
  * Init for all event listener operations.
  */
 function init() {
-    document.querySelector(".sideBarButton").addEventListener("click", toggleSideBar);
-    document.querySelector(".plusIcon").addEventListener("click", toggleSideBarPlusButton); 
-    document.querySelector(".newListText").addEventListener('keyup', saveList); 
-    document.querySelector(".deleteList").addEventListener("click",deleteList);
-    document.querySelector(".newCreateList").addEventListener("click", displayList);
-    document.querySelector(".newListText").addEventListener("focus", listBoxOnFocus);
-    document.querySelector(".newListText").addEventListener("focusout", listBoxOnFocusOut);
-    document.querySelector(".titleName").addEventListener("keyup", listNameEdit);
-    document.querySelector(".task").addEventListener("click", displayTaskNameInStepBar);
-    document.querySelector(".addTask").addEventListener("click", createTask); 
-    document.querySelector(".newTaskText").addEventListener("keyup",createTaskBox);
-    document.querySelector(".taskInStepHeader").addEventListener("keyup", editTaskName);
-    document.querySelector(".addSteps").addEventListener("click", addSteps);
-    document.querySelector(".newStepText").addEventListener("keyup", saveNewStep);
-    document.querySelector("#checkboxInStepHeader").addEventListener("change", changeTaskCheckBox);
-    document.querySelector(".backIcon").addEventListener("click",compressStepMenu);
-    document.querySelector(".trashIcon").addEventListener("click",deleteTask);
+    addEventListener(".sideBarButton", "click", toggleSideBar);
+    addEventListener(".plusIcon", "click", toggleSideBarPlusButton); 
+    addEventListener(".newListText", 'keyup', saveList); 
+    addEventListener(".deleteList", "click",deleteList);
+    addEventListener(".newCreateList", "click", displayList);
+    addEventListener(".titleName", "keyup", listNameEdit);
+    addEventListener(".task", "click", displayTaskNameInStepBar);
+    addEventListener(".addTask", "click", createTask); 
+    addEventListener(".newTaskText", "keyup",createTaskBox);
+    addEventListener(".taskInStepHeader", "keyup", editTaskName);
+    addEventListener(".addSteps", "click", addSteps);
+    addEventListener(".newStepText", "keyup", saveNewStep);
+    addEventListener("#checkboxInStepHeader", "change", changeTaskCheckBox);
+    addEventListener(".backIcon", "click",compressStepMenu);
+    addEventListener(".trashIcon", "click",deleteTask);
+}
+
+function addEventListener(element, attribute, action) {
+    querySelector(element).addEventListener(attribute, action);
 }
 
 /**
@@ -62,6 +64,25 @@ function appendChild(parentElement, childElement) {
     parentElement.appendChild(childElement);
 }
 
+/**
+ * Removing the child element from parent element.
+ * 
+ * @param parentElement - Parent element.
+ * @param childElement - Child element to remove from parent.
+ */
+function removeChild(parentElement, childElement) {
+    parentElement.removeChild(childElement);
+}
+
+/**
+ * Adding the text content to a span element.
+ * 
+ * @param parentElement - Parent element to add text content. 
+ * @param childElement - Content to be added in parent element.
+ */
+function textContent(parentElement, childElement) {
+    parentElement.textContent = childElement;
+}
 /**
  * Refresh the elements from parent element.
  */
@@ -97,31 +118,51 @@ function getStepByCurrentStepId(task) {
     
 }
 
+/**
+ * Event enter key check.
+ * 
+ * @param textLength - Length of the text in input.
+ * @param event - Event which detect whether enter key is pressed or not.
+ */
+function enterKeyCheck(textLength, event) {
+    if ((textLength.length != 0) && (event.keyCode === 13)) {
+        return true;
+    }
+    return false;
+}
+
+/**
+ * Query selector function.
+ * 
+ * @param element - Element of query Selector. 
+ */
+function querySelector(element) {
+    return document.querySelector(element);
+}
+
+/**
+ * Query selector function.
+ * 
+ * @param element - Element of query Selector. 
+ */
+function querySelectorAll(element) {
+    return document.querySelectorAll(element);
+}
+
 /** 
  * SideBar functions while clicking the side bar menu button.
  */
 function toggleSideBar() {
+    console.log("Side button" + this.value);
     if (this.value == "open") {
-        document.querySelector(".sidePanel").style.width = "4%";
-        document.querySelector(".sidePanalText").style.display = "none";
-        document.querySelector(".newListInput").style.display = "none";
-        document.querySelector(".stepsBarFooter").style.display = "none";
-        var createdList = document.querySelectorAll(".listName");
-        createdList.forEach(item => {
-            item.style.display = "none";
-        });
-        document.querySelector(".taskDiv").style.width = "96%";
+        setAttribute(querySelector(".sidePanel"), "class", "sidePanel sidePanelClose");
+        setAttribute(querySelector(".newListInput"), "class", "newListInput newListInputClose");
+        setAttribute(querySelector(".taskDiv"), "class", "taskDiv taskDivFull");
         this.value = "close";
     } else {
-        document.querySelector(".sidePanel").style.width = "23%";
-        document.querySelector(".sidePanalText").style.display = "block";
-        document.querySelector(".newListInput").style.display = "block";
-        document.querySelector(".stepsBarFooter").style.display = "block";
-        var createdList = document.querySelectorAll(".listName");
-        createdList.forEach(item => {
-            item.style.display = "block";
-        });
-        document.querySelector(".taskDiv").style.width = "77%";
+        setAttribute(querySelector(".sidePanel"), "class", "sidePanel");
+        setAttribute(querySelector(".newListInput"), "class", "newListInput");
+        setAttribute(querySelector(".taskDiv"), "class", "taskDiv");
         this.value = "open";
     };
 };
@@ -131,16 +172,16 @@ function toggleSideBar() {
  * clicking the plus when its in closed state.
  */
 function toggleSideBarPlusButton() {
-    if (document.querySelector(".sideBarButton").value == "close") {
-        document.querySelector(".sidePanel").style.width = "23%";
-        document.querySelector(".sidePanalText").style.display = "block";
-        document.querySelector(".newListInput").style.display = "block";
-        var createdList = document.querySelectorAll(".listName");
-        createdList.forEach(item => {
-            item.style.display = "block";
-        });
-        document.querySelector(".taskDiv").style.width = "77%";
-        document.querySelector(".sideBarButton").value = "open";
+    console.log("Side plus button" + this.value);
+    if (querySelector(".sideBarButton").value == "close") {
+        setAttribute(querySelector(".sidePanel"), "class", "sidePanel");
+        setAttribute(querySelector(".newListInput"), "class", "newListInput");
+        if (querySelector(".backIcon").value == "close") { 
+            setAttribute(querySelector(".taskDiv"), "class", "taskDiv");
+        } else {
+            setAttribute(querySelector(".taskDiv"), "class", "taskDiv taskDivClose");
+        }
+        querySelector(".sideBarButton").value = "open";
     };
 };
 
@@ -149,12 +190,21 @@ function toggleSideBarPlusButton() {
  * and press enter to save.
  */
 function saveList(e) {
-    if ((this.value.length != 0) && (e.keyCode === 13)) {
+    if (enterKeyCheck(this.value, e)) {
         saveListInTotalList(this.value);
         createNewList(this.value, "true");
         this.value = null;
     };
 };
+
+function checkNameUnique(name, lists) {
+    let count = lists.filter(list => name.includes(list.name)).length;
+    if (count == 0) {
+        return name;
+    } 
+    let newName = name + "(" + count + ")";
+    return newName; 
+}
 
 /**
  * Saves the list details in list and pushes that list in total list.
@@ -165,7 +215,7 @@ function saveList(e) {
 function saveListInTotalList(listContent) {
     let taskList = {};
     taskList.id = getDate();
-    taskList.name = listContent;
+    taskList.name = checkNameUnique(listContent, totalList);
     let status = "active";
     taskList.status = status;
     totalList.push(taskList);
@@ -178,8 +228,8 @@ function saveListInTotalList(listContent) {
  * @param  boolean     - Based on requirement refreshing the task. 
  */
 function createNewList(listContent, boolean) {
-    refresh(document.querySelectorAll(".listCreated"), document.querySelector(".newCreateList"));
-    let lists = totalList.filter(list => list.status === "active");
+    refresh(querySelectorAll(".listCreated"), querySelector(".newCreateList"));
+    let lists = totalList.filter(list => list.status == "active");
     lists.forEach(list => {
         var iconDiv = createElement("DIV");
         setAttribute(iconDiv, 'id', list.id);
@@ -190,23 +240,24 @@ function createNewList(listContent, boolean) {
         var textDiv = createElement("DIV");
         setAttribute(textDiv, 'class', 'listName');
         var span = createElement('span');
-        span.textContent = list.name;
+        textContent(span, list.name);
         appendChild(textDiv, span);
         var spanCount = createElement('span');
         setAttribute(spanCount, "class", "spanCount");
         var count = 0;
         if (list.task != null) {
-            let lists = list.task.filter(task => task.isFinished === "false");
+            let lists = list.task.filter(task => (task.isFinished == "false") && (task.status == "active"));
             count = lists.length;	
         };
-        spanCount.textContent = count;
+        textContent(spanCount, count);
         appendChild(iconDiv, spanCount);
-        document.querySelector(".newCreateList").appendChild(iconDiv).appendChild(textDiv);
+        appendChild(document.querySelector(".newCreateList"), iconDiv);
+        appendChild(iconDiv, textDiv);
     });
     if (boolean == "true") {
-        document.querySelector(".titleName").value = listContent;
+        querySelector(".titleName").value = listContent;
         currentListId = millisec;
-        refresh(document.querySelectorAll(".addedTask"), document.querySelector(".task"));
+        refresh(querySelectorAll(".addedTask"), querySelector(".task"));
     };
 };
 
@@ -223,38 +274,21 @@ function deleteList() {
  * Displaying the list's name and its task that it holds in task bar.
  */
 function displayList(e) {
-    refresh(document.querySelectorAll(".addedTask"), document.querySelector(".task"));
+    refresh(querySelectorAll(".addedTask"), querySelector(".task"));
     currentListId = e.target.id;
     let list = getListByCurrentListId();
-    document.querySelector(".titleName").value = list.name;
+    querySelector(".titleName").value = list.name;
     addTask(list);
 }
-    
-
-/**
- * Changes the style of the input box in list creaation while on focus.
- */
-function listBoxOnFocus() {
-    document.querySelector(".fa-plus").style.color = "#868077"; 
-    document.querySelector(".fa-plus").style.opacity = "0.7"; 
-};
-
-/**
- * Changes the style of the input box in list creaation while on focusout.
- */
-function listBoxOnFocusOut() {    
-    document.querySelector(".fa-plus").style.color = "#2078e5"; 
-    document.querySelector(".fa-plus").style.opacity = "1"; 
-};
 
 /**
  * Edits the list name in task header.
  */
 function listNameEdit(e) {
-    if ((this.value.length != 0) && (e.keyCode === 13)) {
+    if (enterKeyCheck(this.value, e)) {
         let list = getListByCurrentListId();
         list.name = this.value;
-        refresh(document.querySelectorAll(".listCreated"), document.querySelector(".newCreateList"));
+        refresh(querySelectorAll(".listCreated"), querySelector(".newCreateList"));
         createNewList(list.name, "false");
     };
 };
@@ -266,19 +300,21 @@ function displayTaskNameInStepBar(e) {
     currentTaskId = e.target.id;
     let list = getListByCurrentListId();
     let task = getTaskByCurrentTaskId(list);
-    let checkBoxInStepHeader = document.querySelector("#checkboxInStepHeader");
-    let taskInStepHeader = document.querySelector(".taskInStepHeader");
+    let checkBoxInStepHeader = querySelector("#checkboxInStepHeader");
+    let taskInStepHeader = querySelector(".taskInStepHeader");
     if (task.isFinished == "true") {
         checkBoxInStepHeader.checked = true;
-        taskInStepHeader.setAttribute("value", task.name)
-        taskInStepHeader.setAttribute("class", "taskInStepHeader taskInStepHeaderStriked")
+        textContent(taskInStepHeader, task.name);
+        //setAttribute(, "value", );
+        setAttribute(taskInStepHeader, "class", "taskInStepHeader taskInStepHeaderStriked");
     } else {
         checkBoxInStepHeader.checked = false;
-        taskInStepHeader.setAttribute("value", task.name)
-        taskInStepHeader.setAttribute("class", "taskInStepHeader")
+        textContent(taskInStepHeader, task.name);
+        //setAttribute(taskInStepHeader, "value", task.name);
+        setAttribute(taskInStepHeader, "class", "taskInStepHeader");
     }
     showStepsBar();
-    refresh(document.querySelectorAll(".addedStep"), document.querySelector(".newSteps"));
+    refresh(querySelectorAll(".addedStep"), querySelector(".newSteps"));
     if (task.step != null) {
         addStep(task.step);
     }
@@ -288,27 +324,27 @@ function displayTaskNameInStepBar(e) {
  * Creates new task by entering new task name in task bar and press enter.
  */
 function createTask() {
-    var child = document.querySelector("#plus");
-    var parent = document.querySelector(".newTaskTextLabelClass");
-    var newChild = document.createElement("I");
-    newChild.setAttribute('class', 'far fa-circle');
+    var child = querySelector("#plus");
+    var parent = querySelector(".newTaskTextLabelClass");
+    var newChild = createElement("I");
+    setAttribute(newChild, 'class', 'far fa-circle');
     newChild.style.color = "black";
     newChild.style.opacity = "0.5";
-    parent.removeChild(child);
-    parent.appendChild(newChild);
+    removeChild(parent, child);
+    appendChild(parent, newChild);
 };
 
 /**
  * Creating the new task. 
  */
 function createTaskBox(e) {
-    if ((this.value != 0) && (e.keyCode === 13)) {
+    if (enterKeyCheck(this.value, e)) {
         saveTaskInList(this.value);
-        refresh(document.querySelectorAll(".addedTask"), document.querySelector(".task"));
+        refresh(querySelectorAll(".addedTask"), querySelector(".task"));
         let list = getListByCurrentListId();
         addTask(list);
         this.value = null;
-        refresh(document.querySelectorAll(".listCreated"), document.querySelector(".newCreateList"));
+        refresh(querySelectorAll(".listCreated"), querySelector(".newCreateList"));
         createNewList(list.name, "false");
     }
 }
@@ -322,30 +358,30 @@ function addTask(list) {
     if (list.task != null) {
         let tasks = list.task.filter(task => task.status == "active");
         tasks.forEach(task => {
-            var addedTask = document.createElement("DIV");
-            addedTask.setAttribute('class', 'addedTask');
-            addedTask.setAttribute('id', task.id);
-            var round = document.createElement("DIV");
-            round.setAttribute('class', 'round');
-            addedTask.appendChild(round);
-            var checkbox = document.createElement("input");
+            var addedTask = createElement("DIV");
+            setAttribute(addedTask, 'class', 'addedTask');
+            setAttribute(addedTask, 'id', task.id);
+            var round = createElement("DIV");
+            setAttribute(round, 'class', 'round');
+            appendChild(addedTask, round);
+            var checkbox = createElement("input");
             checkbox.type = "checkbox"; 
             checkbox.id = task.id + "checkBox";
-            round.appendChild(checkbox);
+            appendChild(round, checkbox);
             listenerForCheckBoxInAddTask(checkbox);
-            var label = document.createElement('label'); 
+            var label = createElement('label'); 
             label.htmlFor = task.id + "checkBox"; 
-            round.appendChild(label);
-            var span = document.createElement('span');
+            appendChild(round, label);
+            var span = createElement('span');
             if (task.isFinished == "true") {
-                span.setAttribute('class', "taskName strike");
+                setAttribute(span, 'class', "taskName strike");
                 checkbox.checked = true;
             } else {
-                span.setAttribute('class', 'taskName');
+                setAttribute(span, 'class', 'taskName');
             }
-            span.textContent = task.name;
-            addedTask.appendChild(span);
-            document.querySelector(".task").appendChild(addedTask);
+            textContent(span, task.name);
+            appendChild(addedTask, span);
+            appendChild(querySelector(".task"), addedTask);
         })
     }
 }
@@ -381,22 +417,22 @@ function listenerForCheckBoxInAddTask(element) {
         currentTaskId = getIdByReplaceText(id, "checkBox");
         let list = getListByCurrentListId();
         let task = getTaskByCurrentTaskId(list);
-        let checkBoxInStepHeader = document.querySelector("#checkboxInStepHeader");
-        let taskInStepHeader = document.querySelector(".taskInStepHeader");
+        let checkBoxInStepHeader = querySelector("#checkboxInStepHeader");
+        let taskInStepHeader = querySelector(".taskInStepHeader");
         if (element.checked) {
             task.isFinished = "true";
             checkBoxInStepHeader.checked = true;
-            taskInStepHeader.setAttribute("value", task.name)
-            taskInStepHeader.setAttribute("class", "taskInStepHeader taskInStepHeaderStriked")
+            setAttribute(taskInStepHeader, "value", task.name)
+            setAttribute(taskInStepHeader, "class", "taskInStepHeader taskInStepHeaderStriked")
         } else {
             task.isFinished = "false";
             checkBoxInStepHeader.checked = false;
-            taskInStepHeader.setAttribute("value", task.name)
-            taskInStepHeader.setAttribute("class", "taskInStepHeader")
+            setAttribute(taskInStepHeader, "value", task.name)
+            setAttribute(taskInStepHeader, "class", "taskInStepHeader")
         }
-        refresh(document.querySelectorAll(".addedTask"), document.querySelector(".task"));
+        refresh(querySelectorAll(".addedTask"), querySelector(".task"));
         addTask(list);
-        refresh(document.querySelectorAll(".listCreated"), document.querySelector(".newCreateList"));
+        refresh(querySelectorAll(".listCreated"), querySelector(".newCreateList"));
         createNewList(list.name, "false");
     })
 }
@@ -406,11 +442,11 @@ function listenerForCheckBoxInAddTask(element) {
  * Editing the task name in step bar Header.
  */
 function editTaskName(e) {
-    if ((this.value.length != 0) && (e.keyCode === 13)) {
+    if (enterKeyCheck(this.textContent, e)) {
         let list = getListByCurrentListId();
         let task = getTaskByCurrentTaskId(list);
-        task.name = this.value;
-        refresh(document.querySelectorAll(".addedTask"), document.querySelector(".task"));
+        task.name = this.textContent;
+        refresh(querySelectorAll(".addedTask"), querySelector(".task"));
         addTask(list);
     }
 }
@@ -419,23 +455,23 @@ function editTaskName(e) {
  * Adding the steps in current task by typing the step name and presses enter to save.
  */
 function addSteps() {
-    var child = document.querySelector("#plusStep");
-    var parent = document.querySelector(".newStepTextLabelClass");
-    var newChild = document.createElement("I");
-    newChild.setAttribute('class', 'far fa-circle');
+    var child = querySelector("#plusStep");
+    var parent = querySelector(".newStepTextLabelClass");
+    var newChild = createElement("I");
+    setAttribute(newChild, 'class', 'far fa-circle');
     newChild.style.color = "black";
     newChild.style.opacity = "0.5";
-    parent.removeChild(child);
-    parent.appendChild(newChild);
+    removeChild(parent, child);
+    appendChild(parent, newChild);
 }
 
 /**
  * Save new step from step add input box.
  */
 function saveNewStep(e) {
-    if ((this.value.length != 0) && (e.keyCode === 13)) {
+    if (enterKeyCheck(this.value, e)) {
         saveStepInTask(this.value);
-        refresh(document.querySelectorAll(".addedStep"), document.querySelector(".newSteps"));
+        refresh(querySelectorAll(".addedStep"), querySelector(".newSteps"));
         const list = getListByCurrentListId();
         const task = getTaskByCurrentTaskId(list);
         addStep(task.step);
@@ -452,36 +488,37 @@ function saveNewStep(e) {
 function addStep(step) {
     let steps = step.filter(step => step.status == "active");
     steps.forEach(newStep => {
-        var addedStep = document.createElement("DIV");
-        addedStep.setAttribute('class', 'addedStep');
-        addedStep.setAttribute('id', newStep.id);
-        var roundStepBarIcon = document.createElement("DIV");
-        roundStepBarIcon.setAttribute('class', 'roundStepBarIcon');
-        var checkboxStepBar = document.createElement("input");
+        var addedStep = createElement("DIV");
+        setAttribute(addedStep, 'class', 'addedStep');
+        setAttribute(addedStep, 'id', newStep.id);
+        var roundStepBarIcon = createElement("DIV");
+        setAttribute(roundStepBarIcon, 'class', 'roundStepBarIcon');
+        var checkboxStepBar = createElement("input");
         checkboxStepBar.type = "checkbox"; 
         checkboxStepBar.id = newStep.id + "checkBox";
-        roundStepBarIcon.appendChild(checkboxStepBar);
+        appendChild(roundStepBarIcon, checkboxStepBar);
         listenerForCheckBoxInAddStep(checkboxStepBar);
-        var labelStepBar = document.createElement('label'); 
+        var labelStepBar = createElement('label'); 
         labelStepBar.htmlFor = newStep.id + "checkBox"; 
-        roundStepBarIcon.appendChild(labelStepBar);
-        var spanBar = document.createElement('span');
+        appendChild(roundStepBarIcon, labelStepBar);
+        var spanBar = createElement('span');
+        setAttribute(spanBar, "contenteditable", true);
         if (newStep.isFinished == "true") {
-            spanBar.setAttribute('class', "stepTextBar stepTextBarStrike");
+            setAttribute(spanBar, 'class', "stepTextBar stepTextBarStrike");
             checkboxStepBar.checked = true;
         } else {
-            spanBar.setAttribute('class', 'stepTextBar');
+            setAttribute(spanBar, 'class', 'stepTextBar');
             checkboxStepBar.checked = false;
         }
-        spanBar.textContent = newStep.name;
-        var closeIconInAddStep = document.createElement("I");
-        closeIconInAddStep.setAttribute("class", "fa fa-times");
-        closeIconInAddStep.setAttribute("id", newStep.id + "close");
+        textContent(spanBar, newStep.name);
+        var closeIconInAddStep = createElement("I");
+        setAttribute(closeIconInAddStep, "class", "fa fa-times");
+        setAttribute(closeIconInAddStep, "id", newStep.id + "close");
         listenerForCloseIconInAddStep(closeIconInAddStep);
-        addedStep.appendChild(roundStepBarIcon);
-        addedStep.appendChild(spanBar);
-        addedStep.appendChild(closeIconInAddStep);
-        document.querySelector(".newSteps").appendChild(addedStep);
+        appendChild(addedStep, roundStepBarIcon);
+        appendChild(addedStep, spanBar);
+        appendChild(addedStep, closeIconInAddStep);
+        appendChild(querySelector(".newSteps"), addedStep);
     })
 }
  
@@ -511,16 +548,17 @@ function saveStepInTask(newStep) {
  * Showing the steps bar.
  */
 function showStepsBar() {
-    var sideBarButton = document.querySelector(".sideBarButton");
-    var taskBar = document.querySelector(".taskDiv");
-    var stepBar = document.querySelector(".stepsBar");
-    document.querySelector(".backIcon").value = "open";
+    console.log("show step bar");
+    var sideBarButton = querySelector(".sideBarButton");
+    var taskBar = querySelector(".taskDiv");
+    var stepBar = querySelector(".stepsBar");
+    querySelector(".backIcon").value = "open";
     if (sideBarButton.value == 'open') {
-        taskBar.style.width = "50%";
-        stepBar.style.width = "27%";
+        setAttribute(querySelector(".taskDiv"), "class", "taskDiv taskDivClose");
+        setAttribute(querySelector(".stepsBar"), "class", "stepsBar stepsBarOpen");
     } else {
-        taskBar.style.width = "69%";
-        stepBar.style.width = "27%";
+        setAttribute(querySelector(".taskDiv"), "class", "taskDiv taskDivPartialFull");
+        setAttribute(querySelector(".stepsBar"), "class", "stepsBar stepsBarOpen");
     }	
 }
 
@@ -541,7 +579,7 @@ function listenerForCheckBoxInAddStep(element) {
         } else {
             newStep.isFinished = "false";
         }
-        refresh(document.querySelectorAll(".addedStep"), document.querySelector(".newSteps"));
+        refresh(querySelectorAll(".addedStep"), querySelector(".newSteps"));
         addStep(task.step);
     })
 }
@@ -562,7 +600,7 @@ function listenerForCloseIconInAddStep(element) {
         let task = getTaskByCurrentTaskId(list);
         let newStep = getStepByCurrentStepId(task);
         newStep.status = "inActive";
-        refresh(document.querySelectorAll(".addedStep"), document.querySelector(".newSteps"));
+        refresh(querySelectorAll(".addedStep"), querySelector(".newSteps"));
         addStep(task.step);
     })
 }
@@ -573,16 +611,16 @@ function listenerForCloseIconInAddStep(element) {
 function changeTaskCheckBox() {
     let list = getListByCurrentListId();
     let task = getTaskByCurrentTaskId(list);
-    let taskInStepHeader = document.querySelector(".taskInStepHeader");
+    let taskInStepHeader = querySelector(".taskInStepHeader");
     if (task.isFinished == "true") {
         task.isFinished = "false";
-        taskInStepHeader.setAttribute("class", "taskInStepHeader")
-        refresh(document.querySelectorAll(".addedTask"), document.querySelector(".task"));
+        setAttribute(taskInStepHeader, "class", "taskInStepHeader")
+        refresh(querySelectorAll(".addedTask"), querySelector(".task"));
         addTask(list);
     } else {
         task.isFinished = "true";
-        taskInStepHeader.setAttribute("class", "taskInStepHeader taskInStepHeaderStriked")
-        refresh(document.querySelectorAll(".addedTask"), document.querySelector(".task"));
+        setAttribute(taskInStepHeader, "class", "taskInStepHeader taskInStepHeaderStriked")
+        refresh(querySelectorAll(".addedTask"), querySelector(".task"));
         addTask(list);
     }
 }
@@ -591,19 +629,18 @@ function changeTaskCheckBox() {
  * Back Icon in the step bar footer to close the step bar.
  */
 function compressStepMenu() {
-    let sideBarButton = document.querySelector(".sideBarButton");
-    let sidePanal = document.querySelector(".sidePanel");
-    let taskBar = document.querySelector(".taskDiv");
-    let stepBar = document.querySelector(".stepsBar");
+    console.log("Side back button" + this.value);
+    let sideBarButton = querySelector(".sideBarButton");
+    let sidePanal = querySelector(".sidePanel");
+    let taskBar = querySelector(".taskDiv");
+    let stepBar = querySelector(".stepsBar");
     this.value = "close";
     if (sideBarButton.value == 'open') {
-        taskBar.style.width = "77%";
-        sidePanal.style.width = "23%";
-        stepBar.style.width = "0%";
+        setAttribute(querySelector(".taskDiv"), "class", "taskDiv");
+        setAttribute(querySelector(".stepsBar"), "class", "stepsBar");
     } else {
-        taskBar.style.width = "96%";
-        sidePanal.style.width = "4%";
-        stepBar.style.width = "0%";
+        setAttribute(querySelector(".taskDiv"), "class", "taskDiv taskDivFull");
+        setAttribute(querySelector(".stepsBar"), "class", "stepsBar");
     }
 }
 
@@ -614,9 +651,10 @@ function deleteTask() {
     let list = getListByCurrentListId();
     let task = getTaskByCurrentTaskId(list);
     task.status = "inActive";
-    refresh(document.querySelectorAll(".addedTask"), document.querySelector(".task"));
-    document.querySelector(".titleName").value = list.name;
+    refresh(querySelectorAll(".addedTask"), querySelector(".task"));
+    querySelector(".titleName").value = list.name;
     addTask(list);
+    createNewList(list.name, "false");
 }
 
 /**
